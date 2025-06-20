@@ -37,6 +37,7 @@ You need to do all your progress here.
 ## Installation
 
 Make sure you have python3 and pip installed
+- Note from Ryan: Having issues installing the `cffi` package with python 3.13, downgrade to 3.12 or below
 
 Create and activate virtual environment using virtualenv
 ```bash
