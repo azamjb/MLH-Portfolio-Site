@@ -19,6 +19,7 @@ body {
     font-family: "Roboto", serif;
     font-weight: 700 !important;
     padding-top: 10px;
+    box-shadow:  0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
 .top-content {
@@ -57,7 +58,7 @@ body {
 }
 
 .profile {
-    background-color: #1d539f !important;
+    /** background-color: #1d539f !important; **/
     text-align: center;
     height: 500px;
     margin-bottom: 50px;
