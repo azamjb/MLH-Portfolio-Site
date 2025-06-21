@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:title" content="Personal Portfolio">
@@ -13,8 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-
-    <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
+    <link rel="stylesheet" href="./static/styles/base.css">
+    <link rel="stylesheet" href="./static/styles/about.css">   
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
     <script src="https://kit.fontawesome.com/b9e35346a9.js" crossorigin="anonymous"></script>
     <title>{{ title }}</title>
@@ -24,22 +22,133 @@
     <header class="top-bar">
         <div class="top-content">
             <div class="title">
-                <h2>Our Group Portfolio</h2>
+                <h1>Our Group Portfolio</h1>
                 <p>Meet the Team!</p>
             </div>
             <div class="nav-bar">
                 <nav id="nav">
                     <ul>
-                        <li class="nav-element"><a href="{{ url }}/about"><i class="fa-solid fa-person"></i> About</a></li>
-                        <li class="nav-element"><a href="{{ url }}/experience"><i class="fa-solid fa-suitcase"></i> Experience</a></li>
-                        <li class="nav-element"><a href="{{ url }}/education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
-                        <li class="nav-element"><a href="{{ url }}/hobbies"><i class="fa-solid fa-heart"></i> Hobbies</a></li>
-                        <li class="nav-element"><a href="{{ url }}/travel"><i class="fa-solid fa-location-dot"></i> Travel</a></li>
+                        <li class="nav-element"><a href="{{ url }}/about" data-route="about"><i class="fa-solid fa-person"></i> About</a></li>
+                        <li class="nav-element"><a href="{{ url }}/experience" data-route="experience"><i class="fa-solid fa-suitcase"></i> Experience</a></li>
+                        <li class="nav-element"><a href="{{ url }}/education" data-route="education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+                        <li class="nav-element"><a href="{{ url }}/hobbies" data-route="hobbies"><i class="fa-solid fa-heart"></i> Hobbies</a></li>
+                        <li class="nav-element"><a href="{{ url }}/travel" data-route="travel"><i class="fa-solid fa-location-dot"></i> Travel</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
+    <main id="main-content">
+        {% if initial_content %}
+            {{ initial_content|safe }}
+        {% else %}
+            <div class="section-content">
+                <h2>Welcome to Our Portfolio</h2>
+                <p>Select a navigation item above to explore our team's background, experience, and interests.</p>
+                <p>Use the menu to learn more about:</p>
+                <ul>
+                    <li><strong>About</strong> - Our mission and what we do</li>
+                    <li><strong>Experience</strong> - Our professional background</li>
+                    <li><strong>Education</strong> - Our academic achievements</li>
+                    <li><strong>Hobbies</strong> - What we enjoy outside of work</li>
+                    <li><strong>Travel</strong> - Our adventures around the world</li>
+                </ul>
+            </div>
+        {% endif %}
+    </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('[data-route]');
+            const mainContent = document.getElementById('main-content');
+            
+            const activeRoute = '{{ active_route or "" }}';
+            if (activeRoute) {
+                const activeLink = document.querySelector('[data-route="' + activeRoute + '"]');
+                if (activeLink) {
+                    activeLink.parentElement.classList.add('active');
+                }
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    
+                    const route = this.getAttribute('data-route');
+                    const baseUrl = '{{ url }}';
+                    const url = baseUrl.startsWith('http') ? `${baseUrl}/${route}` : `http://${baseUrl}/${route}`;
+                    
+                    navLinks.forEach(l => l.parentElement.classList.remove('active'));
+                    this.parentElement.classList.add('active');
+                    
+                    mainContent.innerHTML = '<div class="loading">Loading...</div>';
+                    
+                    // Fetch content via AJAX
+                    fetch(url, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        mainContent.innerHTML = data.content;
+                        document.title = data.title;
+                        
+                        history.pushState({route: route}, data.title, url);
+                    })
+                    .catch(error => {
+                        console.error('Error loading content:', error);
+                        mainContent.innerHTML = '<div class="error">Error loading content. Please try again.</div>';
+                    });
+                });
+            });
+            
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', function(e) {
+                if (e.state && e.state.route) {
+                    const route = e.state.route;
+                    const baseUrl = '{{ url }}';
+                    const url = baseUrl.startsWith('http') ? `${baseUrl}/${route}` : `http://${baseUrl}/${route}`;
+                    
+                    navLinks.forEach(l => l.parentElement.classList.remove('active'));
+                    const activeLink = document.querySelector(`[data-route="${route}"]`);
+                    if (activeLink) {
+                        activeLink.parentElement.classList.add('active');
+                    }
+                    
+                    fetch(url, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        mainContent.innerHTML = data.content;
+                        document.title = data.title;
+                    });
+                } else {
+                    // Content on initial page load
+                    navLinks.forEach(l => l.parentElement.classList.remove('active'));
+                    mainContent.innerHTML = `
+                        <div class="section-content">
+                            <h2>Welcome to Our Portfolio</h2>
+                            <p>Select a navigation item above to explore our team's background, experience, and interests.</p>
+                            <p>Use the menu to learn more about:</p>
+                            <ul>
+                                <li><strong>About</strong> - Our mission and what we do</li>
+                                <li><strong>Experience</strong> - Our professional background</li>
+                                <li><strong>Education</strong> - Our academic achievements</li>
+                                <li><strong>Hobbies</strong> - What we enjoy outside of work</li>
+                                <li><strong>Travel</strong> - Our adventures around the world</li>
+                            </ul>
+                        </div>
+                    `;
+                    document.title = '{{ title }}';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
