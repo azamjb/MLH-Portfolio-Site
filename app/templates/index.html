@@ -16,25 +16,30 @@
 
     <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <script src="https://kit.fontawesome.com/b9e35346a9.js" crossorigin="anonymous"></script>
     <title>{{ title }}</title>
 </head>
 
 <body>
-    <header class="nav-bar">
-        <div class="nav-content">
-            <a href="/">
-                <div class="nav-logo">
-                    <img src="./static/img/logo.svg" />
-                </div>
-            </a>
+    <header class="top-bar">
+        <div class="top-content">
+            <div class="title">
+                <h2>Our Group Portfolio</h2>
+                <p>Meet the Team!</p>
+            </div>
+            <div class="nav-bar">
+                <nav id="nav">
+                    <ul>
+                        <li class="nav-element"><a href="{{ url }}/about"><i class="fa-solid fa-person"></i> About</a></li>
+                        <li class="nav-element"><a href="{{ url }}/experience"><i class="fa-solid fa-suitcase"></i> Experience</a></li>
+                        <li class="nav-element"><a href="{{ url }}/education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+                        <li class="nav-element"><a href="{{ url }}/hobbies"><i class="fa-solid fa-heart"></i> Hobbies</a></li>
+                        <li class="nav-element"><a href="{{ url }}/travel"><i class="fa-solid fa-location-dot"></i> Travel</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="profile">
-        <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
-        </div>
-        <h1>{{ title }}</h1>
-    </div>
 </body>
 </html>
