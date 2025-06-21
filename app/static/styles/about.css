@@ -1,4 +1,11 @@
-/* About page specific styles */
+
+.avatar-image {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+}
+
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
