@@ -9,24 +9,31 @@ body {
     overflow-x: hidden;
     font-family: "Roboto", serif;
     margin: 0px;
+    height: 100vh;
 }
 
-.nav-bar {
+.top-bar {
     width: 100%;
     display: inline-block;
-    background-color: #1C539F;
+    /** background-color: #1C539F; **/
     font-family: "Roboto", serif;
     font-weight: 700 !important;
     padding-top: 10px;
 }
 
-.nav-content .logo-touch-target {
+.top-content {
+    width: 60vw;
+    margin: 0 auto;
+}
+
+
+.top-content .logo-touch-target {
     display: inline-flex;
     height: 60%;
     width: 350px;
 }
 
-.nav-content .nav-logo {
+.top-content .nav-logo {
     height: 60px;
     margin: auto;
 }
@@ -41,8 +48,8 @@ body {
     width: 200px;
 }
 
-.nav-content nav {
-    display: block;
+.nav-content  {
+    display: flex;
     width: 100%;
     text-align: right;
     padding-top: 0px;
@@ -52,7 +59,7 @@ body {
 .profile {
     background-color: #1d539f !important;
     text-align: center;
-    height: 320px;
+    height: 500px;
     margin-bottom: 50px;
 }
 
@@ -94,4 +101,42 @@ body {
     color: white;
     font-size: 50px;
     font-weight: 700;
+}
+
+.title > h2 {
+    margin-bottom: -0.5em;
+}
+
+#nav > ul {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-element {
+    list-style: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+li {
+    display: inline-block;
+    transition: transform 0.5s ease-in-out;
+}
+
+li:hover {
+    transform: translateY(-10px);
+    /** border-radius: 5px;
+    border: #1c539f solid 3px;
+     **/
+}
+
+a {
+    text-decoration: none;
+    color: oklch(44.6% 0.03 256.802);
 }
