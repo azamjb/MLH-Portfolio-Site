@@ -1,0 +1,149 @@
+.education-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.avatar-image {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+
+
+.education-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.member-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.member-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 20px;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.member-info {
+    flex-grow: 1;
+}
+
+.member-header .member-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.member-header .member-role {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    margin: 0;
+    text-align: center;
+}
+
+.education-details {
+    position: relative;
+}
+
+.institution-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 20px;
+}
+
+.degree-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.institution-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.graduation-year {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.education-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.coursework p {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.course-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.course-tag {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/** Media Queries for Mobile **/
+@media (max-width: 768px) {
+    .education-card {
+        padding: 20px;
+    }
+    
+    .member-header {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+    
+    .member-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        margin-right: 12px;
+    }
+    
+    .member-header .member-name {
+        font-size: 16px;
+    }
+}
