@@ -1,0 +1,185 @@
+.timeline-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.person-timeline {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.person-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.person-avatar .avatar-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #1c539f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    font-size: 24px;
+    color: white;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+
+
+.person-info {
+    flex-grow: 1;
+}
+
+.person-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.person-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c539f;
+    margin: 0;
+}
+
+.timeline-entries {
+    position: relative;
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 25px;
+    padding-left: 45px;
+}
+
+.timeline-entry:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -45px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #1c539f;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #1c539f;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 20px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-left: 4px solid #1c539f;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.timeline-content .position-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.timeline-content .company-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c539f;
+    margin-bottom: 5px;
+}
+
+.timeline-content .duration {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.timeline-content .job-description {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+
+/* Media Queries for mobile */
+@media (max-width: 768px) {
+    .timeline-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: none;
+        padding: 0 10px;
+    }
+    
+    .person-timeline {
+        padding: 20px;
+    }
+    
+    .person-header {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+    
+    .person-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        margin-right: 15px;
+    }
+    
+    .person-name {
+        font-size: 20px;
+    }
+    
+    .person-role {
+        font-size: 14px;
+    }
+    
+    .timeline-entry {
+        padding-left: 35px;
+    }
+    
+    .timeline-marker {
+        left: -35px;
+        width: 10px;
+        height: 10px;
+    }
+    
+    .timeline-content {
+        padding: 15px;
+    }
+    
+    .timeline-content .position-title {
+        font-size: 16px;
+    }
+    
+    .timeline-content .company-name {
+        font-size: 14px;
+    }
+}
