@@ -32,7 +32,7 @@ For each of these tasks, you should create an [Issue](https://docs.github.com/en
 
 ## Getting Started
 
-You need to do all your progress here.
+NOTICE: Map on travel page cannot initialize due to issues creating account/acquiring API token. 
 
 ## Installation
 
@@ -41,8 +41,8 @@ Make sure you have python3 and pip installed
 
 Create and activate virtual environment using virtualenv
 ```bash
-$ python -m venv python3-virtualenv
-$ source python3-virtualenv/bin/activate
+$ python -m venv venv
+$ source venv/bin/activate
 ```
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all dependencies!
@@ -58,6 +58,7 @@ Create a .env file using the example.env template (make a copy using the variabl
 Start flask development server
 ```bash
 $ export FLASK_ENV=development
+$ export URL=http://localhost:5000
 $ flask run
 ```
 
