@@ -48,3 +48,7 @@ def experience():
 @app.route('/education')
 def education():
     return handle_route('education', 'content/education_content.html', 'Education')
+
+@app.route('/travel')
+def travel():
+    return handle_route('travel', 'content/travel_content.html', 'Travel')
