@@ -1,0 +1,236 @@
+<div class="section-content">
+    <h2>Travel</h2>
+    <p>Places our team has explored around the world</p>
+    
+    <!-- Ryan Wang's Travel Section -->
+    <div class="person-travel-card">
+        <div class="travel-profile">
+            <div class="profile-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h3 class="profile-name">Ryan Wang</h3>
+                <p class="profile-title">Full Stack Developer</p>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map-ryan" class="travel-map"></div>
+        </div>
+        
+        <div class="travel-cards-container">
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Cusco, Peru</h4>
+                <p class="coordinates">Lat: -13.529427, Lng: -71.984978</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Yosemite National Park, California USA</h4>
+                <p class="coordinates">Lat: 37.865101, Lng: -119.538330</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">NYC, New York USA</h4>
+                <p class="coordinates">Lat: 40.730610, Lng: -73.935242</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Banff National Park, Alberta Canada</h4>
+                <p class="coordinates">Lat: 51.496845, Lng: -115.928055</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Azam Jawad Butt's Travel Section -->
+    <div class="person-travel-card">
+        <div class="travel-profile">
+            <div class="profile-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h3 class="profile-name">Azam Jawad Butt</h3>
+                <p class="profile-title">Full Stack Developer</p>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map-azam" class="travel-map"></div>
+        </div>
+        
+        <div class="travel-cards-container">
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Barcelona, Spain</h4>
+                <p class="coordinates">Lat: 41.3851, Lng: 2.1734</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Rome, Italy</h4>
+                <p class="coordinates">Lat: 41.9028, Lng: 12.4964</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Cairo, Egypt</h4>
+                <p class="coordinates">Lat: 30.0444, Lng: 31.2357</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Mumbai, India</h4>
+                <p class="coordinates">Lat: 19.0760, Lng: 72.8777</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Andrew Arochukwu's Travel Section -->
+    <div class="person-travel-card">
+        <div class="travel-profile">
+            <div class="profile-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h3 class="profile-name">Andrew Arochukwu</h3>
+                <p class="profile-title">Full Stack Developer</p>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map-andrew" class="travel-map"></div>
+        </div>
+        
+        <div class="travel-cards-container">
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Bangkok, Thailand</h4>
+                <p class="coordinates">Lat: 13.7563, Lng: 100.5018</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Seoul, South Korea</h4>
+                <p class="coordinates">Lat: 37.5665, Lng: 126.9780</p>
+            </div>
+            
+            <div class="travel-card">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="location-name">Vancouver, Canada</h4>
+                <p class="coordinates">Lat: 49.2827, Lng: -123.1207</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Initialize Mapbox maps when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Mapbox access token (replace with your own token from https://mapbox.com)
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+    
+    // Ryan Wang's locations
+    const ryanLocations = [
+        { name: 'Cusco, Peru', coordinates: [-71.984978, -13.529427] },
+        { name: 'Yosemite National Park, California USA', coordinates: [-119.538330, 37.865101] },
+        { name: 'NYC, New York USA', coordinates: [-73.935242, 40.730610] },
+        { name: 'Banff National Park, Alberta Canada', coordinates: [-115.928055, 51.496845] }
+    ];
+    
+    // Azam Jawad Butt's locations
+    const azamLocations = [
+        { name: 'Barcelona, Spain', coordinates: [2.1734, 41.3851] },
+        { name: 'Rome, Italy', coordinates: [12.4964, 41.9028] },
+        { name: 'Cairo, Egypt', coordinates: [31.2357, 30.0444] },
+        { name: 'Mumbai, India', coordinates: [72.8777, 19.0760] }
+    ];
+    
+    // Andrew Arochukwu's locations
+    const andrewLocations = [
+        { name: 'Bangkok, Thailand', coordinates: [100.5018, 13.7563] },
+        { name: 'Seoul, South Korea', coordinates: [126.9780, 37.5665] },
+        { name: 'Vancouver, Canada', coordinates: [-123.1207, 49.2827] }
+    ];
+    
+    // Function to create map with markers
+    function createTravelMap(containerId, locations, centerCoordinates) {
+        // Check if the container exists
+        if (!document.getElementById(containerId)) {
+            return;
+        }
+        
+        const map = new mapboxgl.Map({
+            container: containerId,
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: centerCoordinates,
+            zoom: 2
+        });
+        
+        // Add markers for each location
+        locations.forEach(location => {
+            // Create a custom marker element
+            const markerElement = document.createElement('div');
+            markerElement.className = 'custom-marker';
+            markerElement.innerHTML = '<i class="fa-solid fa-location-dot" style="color: #4CAF50; font-size: 20px;"></i>';
+            
+            // Create popup
+            const popup = new mapboxgl.Popup({ offset: 25 })
+                .setHTML(`<div style="font-weight: 600; color: #333;">${location.name}</div>`);
+            
+            // Add marker to map
+            new mapboxgl.Marker(markerElement)
+                .setLngLat(location.coordinates)
+                .setPopup(popup)
+                .addTo(map);
+        });
+        
+        // Fit map to show all markers
+        if (locations.length > 1) {
+            const bounds = new mapboxgl.LngLatBounds();
+            locations.forEach(location => {
+                bounds.extend(location.coordinates);
+            });
+            map.fitBounds(bounds, { padding: 50 });
+        }
+        
+        return map;
+    }
+    
+    // Initialize maps for each person
+    setTimeout(() => {
+        // Calculate center points for each person's map
+        const ryanCenter = [-95.0, 45.0]; // North America center
+        const azamCenter = [25.0, 35.0]; // Europe/Middle East center  
+        const andrewCenter = [120.0, 35.0]; // Asia center
+        
+        createTravelMap('map-ryan', ryanLocations, ryanCenter);
+        createTravelMap('map-azam', azamLocations, azamCenter);
+        createTravelMap('map-andrew', andrewLocations, andrewCenter);
+    }, 100);
+});
+</script>
