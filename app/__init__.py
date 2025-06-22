@@ -40,3 +40,7 @@ def handle_route(route_name, content_template, page_title):
 @app.route('/about')
 def about():
     return handle_route('about', 'content/about_content.html', 'About Page')
+
+@app.route('/experience')
+def experience():
+    return handle_route('experience', 'content/experience_content.html', 'Experience')
