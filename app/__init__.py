@@ -5,9 +5,13 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
+def get_base_url():
+    """Get the base URL for the current request"""
+    return request.host_url.rstrip('/')
+
 @app.route('/')
 def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
+    return render_template('index.html', title="Portfolio Home", url=get_base_url())
 
 
 def handle_route(route_name, content_template, page_title):
@@ -32,7 +36,7 @@ def handle_route(route_name, content_template, page_title):
         # Return full HTML page for direct visits/reloads
         return render_template('index.html', 
                              title=page_title, 
-                             url=os.getenv("URL"),
+                             url=get_base_url(),
                              initial_content=content,
                              active_route=route_name)
 
