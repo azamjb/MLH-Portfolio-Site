@@ -12,7 +12,7 @@ def get_base_url():
 
 @app.route('/')
 def index():
-    return render_template('index.html', title="Portfolio Home", url=get_base_url())
+    return render_template('index.html', title="Portfolio Home", url=get_base_url(), mapbox_token=os.getenv("MAPBOX_API_TOKEN"))
 
 
 def handle_route(route_name, content_template, page_title):
