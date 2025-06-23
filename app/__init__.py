@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
+# For whatever reason flask can't handle using 127.0.0.1 AND localhost at the same time smh
 def get_base_url():
     """Get the base URL for the current request"""
     return request.host_url.rstrip('/')
