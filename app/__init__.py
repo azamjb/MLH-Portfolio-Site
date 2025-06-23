@@ -17,7 +17,7 @@ def index():
 
 def handle_route(route_name, content_template, page_title):
     """Helper function to handle both AJAX and direct page requests"""
-    content = render_template(content_template)
+    content = render_template(content_template, mapbox_token=os.getenv("MAPBOX_API_TOKEN"))
     
     # Check if this is an AJAX request by looking for Accept header that indicates JSON response is expected
     accept_header = request.headers.get('Accept', '')
