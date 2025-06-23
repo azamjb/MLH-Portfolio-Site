@@ -1,5 +1,5 @@
 <div class="section-content">
-    <h2>Travel (&#128557; Couldn't get proper API Key)</h2>
+    <h2>Travel</h2>
     <p>Places our team has explored around the world</p>
     
     <!-- Ryan Wang's Travel Section -->
@@ -69,6 +69,7 @@
         </div>
         
         <div class="travel-cards-container">
+            <!-- Edit travel cards with your actual travel info -->
             <div class="travel-card">
                 <div class="location-icon">
                     <i class="fa-solid fa-location-dot"></i>
@@ -119,6 +120,7 @@
         </div>
         
         <div class="travel-cards-container">
+            <!-- Edit travel cards with your actual travel info -->
             <div class="travel-card">
                 <div class="location-icon">
                     <i class="fa-solid fa-location-dot"></i>
@@ -150,11 +152,10 @@
 // Initialize Mapbox maps when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     
+    //Ty jocelyn for the token <3
+    mapboxgl.accessToken = '{{ mapbox_token }}';
 
-    //Fake mapbox token
-    //mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-    
-
+    // Locations hard coded
     const ryanLocations = [
         { name: 'Cusco, Peru', coordinates: [-71.984978, -13.529427] },
         { name: 'Yosemite National Park, California USA', coordinates: [-119.538330, 37.865101] },
@@ -162,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'Banff National Park, Alberta Canada', coordinates: [-115.928055, 51.496845] }
     ];
     
+    // Fake locations -- Add your own
     const azamLocations = [
         { name: 'Barcelona, Spain', coordinates: [2.1734, 41.3851] },
         { name: 'Rome, Italy', coordinates: [12.4964, 41.9028] },
@@ -169,6 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'Mumbai, India', coordinates: [72.8777, 19.0760] }
     ];
     
+    // Fake locations -- Add your own
     const andrewLocations = [
         { name: 'Bangkok, Thailand', coordinates: [100.5018, 13.7563] },
         { name: 'Seoul, South Korea', coordinates: [126.9780, 37.5665] },
