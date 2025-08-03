@@ -1,23 +1,66 @@
+import time
 import os
+from peewee import *
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
-
+import datetime
+from playhouse.shortcuts import model_to_dict
 load_dotenv()
+
 app = Flask(__name__)
 
-# For whatever reason flask can't handle using 127.0.0.1 AND localhost at the same time smh
+# Configure the database using environment variables
+mydb = MySQLDatabase(
+    os.getenv("MYSQL_DATABASE"),
+    user=os.getenv("MYSQL_USER"),
+    password=os.getenv("MYSQL_PASSWORD"),
+    host=os.getenv("MYSQL_HOST"),
+    port=3306
+)
+
+print(mydb)
+
+
+class TimelinePost(Model):
+    name = CharField()
+    email = CharField()
+    content = TextField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database = mydb
+
+max_attempts = 10
+attempt = 0
+while attempt < max_attempts:
+    try:
+        mydb.connect()
+        print("Connected to the database.")
+        break
+    except OperationalError as e:
+        attempt += 1
+        print(f"Database not ready yet (attempt {attempt}/{max_attempts}): {e}")
+        time.sleep(3)  # wait 3 seconds before retrying
+else:
+    raise Exception("Failed to connect to the database after multiple attempts")
+
+mydb.create_tables([TimelinePost])
+
 def get_base_url():
     """Get the base URL for the current request"""
     return request.host_url.rstrip('/')
 
+
+
 @app.route('/')
 def index():
-    return render_template('index.html', title="Portfolio Home", url=get_base_url(), mapbox_token=os.getenv("MAPBOX_API_TOKEN"))
+    return render_template('index.html', title="Portfolio Home", url=get_base_url())
+
 
 
 def handle_route(route_name, content_template, page_title):
     """Helper function to handle both AJAX and direct page requests"""
-    content = render_template(content_template, mapbox_token=os.getenv("MAPBOX_API_TOKEN"))
+    content = render_template(content_template)
     
     # Check if this is an AJAX request by looking for Accept header that indicates JSON response is expected
     accept_header = request.headers.get('Accept', '')
@@ -41,22 +84,51 @@ def handle_route(route_name, content_template, page_title):
                              initial_content=content,
                              active_route=route_name)
 
+
 @app.route('/about')
 def about():
     return handle_route('about', 'content/about_content.html', 'About Page')
+
 
 @app.route('/experience')
 def experience():
     return handle_route('experience', 'content/experience_content.html', 'Experience')
 
+
 @app.route('/education')
 def education():
     return handle_route('education', 'content/education_content.html', 'Education')
+
 
 @app.route('/hobbies')
 def hobbies():
     return handle_route('hobbies', 'content/hobbies_content.html', 'Hobbies')
 
+
 @app.route('/travel')
 def travel():
     return handle_route('travel', 'content/travel_content.html', 'Travel')
+
+@app.route('/timeline')
+def timeline():
+    return handle_route('timeline', 'content/timeline.html', 'Timeline')
+
+
+@app.route('/api/timeline_post', methods=['POST'])
+def post_time_line_post():
+    name = request.form['name']
+    email = request.form['email']
+    content = request.form['content']
+    timeline_post = TimelinePost.create(name=name, email=email, content=content)
+
+    return model_to_dict(timeline_post)
+
+@app.route('/api/timeline_post', methods=['GET'])
+def get_time_line_post():   
+    return {
+        'timeline_posts': [
+            model_to_dict(p)
+            for p in
+TimelinePost.select().order_by(TimelinePost.created_at.desc())
+        ]    
+    }
